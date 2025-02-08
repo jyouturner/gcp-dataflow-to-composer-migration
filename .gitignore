@@ -85,3 +85,4 @@ temp/
 # internal
 .internal/
 conversations/
+output/

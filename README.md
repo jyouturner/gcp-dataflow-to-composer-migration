@@ -78,6 +78,15 @@ poetry run fix src/main/java/org/example/SamplePipeline.java --fix
 poetry run migrate --project-id=your-project-id --region=your-region
 ```
 
+### Option 2: DAGify Integration
+
+Generate DAGs using DAGify:
+```bash
+poetry run dagify-migrate --project-id=your-project-id --region=your-region
+```
+
+Configuration can be customized in `config/dagify-config.yaml`.
+
 ## Key Features
 
 1. **Code Transformation**

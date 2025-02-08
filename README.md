@@ -2,6 +2,11 @@
 
 This tool automates the migration of Apache Beam pipelines from Google Cloud Dataflow to Cloud Composer (Apache Airflow).
 
+This tool integrates with DAGify, a powerful open-source tool from Google that helps migrate batch workflows to Apache Airflow. While DAGify was originally designed for Control-M migrations, we've adapted its capabilities to handle Dataflow to Composer migrations. The tool analyzes your Dataflow jobs and generates equivalent Airflow DAGs while preserving the original pipeline's business logic and dependencies.
+
+For more information about DAGify, visit: https://opensource.googleblog.com/2024/07/dagify-accelerate-your-journey-from-control-m-to-apache-airflow.html
+
+
 ## Project Structure
 
 ```

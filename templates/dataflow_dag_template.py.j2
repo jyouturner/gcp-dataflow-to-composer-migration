@@ -1,1 +1,37 @@
-# Move from docs/dag-template.py 
+from datetime import datetime, timedelta
+from airflow import DAG
+from airflow.providers.google.cloud.operators.dataflow import DataflowTemplatedJobStartOperator
+
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'email_on_failure': True,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+}
+
+with DAG(
+    '{{ dag_id }}',
+    default_args=default_args,
+    description='Migrated from Dataflow job',
+    schedule_interval='{{ schedule_interval }}',
+    start_date=datetime(2024, 1, 1),
+    catchup=False,
+    tags=['dataflow', 'migrated'],
+) as dag:
+
+    dataflow_task = DataflowTemplatedJobStartOperator(
+        task_id='dataflow_task',
+        template='{{ template_path }}',
+        project_id='{{ project_id }}',
+        location='{{ region }}',
+        gcp_conn_id='google_cloud_default',
+        parameters={{ parameters }},
+        dataflow_default_options={
+            'machine_type': '{{ machine_type }}',
+            'max_workers': {{ max_workers }},
+            'network': '{{ network }}',
+            'service_account_email': '{{ service_account }}',
+        }
+    )

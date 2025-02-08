@@ -1,0 +1,1 @@
+# Copy from docs/test-resources.java 
